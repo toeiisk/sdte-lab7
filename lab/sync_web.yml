@@ -1,0 +1,12 @@
+- hosts: web
+  tasks:
+  - name: "copy website"
+    copy:
+      src: site/
+      dest: /var/www/default
+  - name: "change website content to hostname"
+    replace:
+      path: /var/www/default/index.html
+      regexp: 'world'
+      replace: '{{ hostname }}'
+      backup: yes
